@@ -8,3 +8,7 @@ puts "Patrick Bateman"
 puts "Tyler Durden"
 puts "Freddy Kreuger"
 puts "The Joker"
+
+print "Overall, we have "
+print 8
+puts " great students"
