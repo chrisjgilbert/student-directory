@@ -1,13 +1,13 @@
 students = [
-  "Dr. Hannibal Lecter",
-  "Darth Vader",
-  "Norman Bates",
-  "Michael Corleone",
-  "Patrick Bateman",
-  "Tyler Durden",
-  "Freddy Kreuger",
-  "The Joker",
-  "Dr No"
+  {name: "Dr. Hannibal Lecter", cohort: :november},
+  {name: "Darth Vader", cohort: :november},
+  {name: "Norman Bates", cohort: :november},
+  {name: "Michael Corleone", cohort: :november},
+  {name: "Patrick Bateman", cohort: :november},
+  {name: "Tyler Durden", cohort: :november},
+  {name: "Freddy Kreuger", cohort: :november},
+  {name: "The Joker", cohort: :november},
+  {name: "Dr No", cohort: :november}
 ]
 
 def print_header
@@ -15,12 +15,14 @@ def print_header
   puts "===================="
 end
 
-def print_list(names)
-  names.each { |name| puts name }
+def print_list(students)
+  students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort)"
+  end
 end
 
-def print_footer(names)
-print "Overall, we have #{names.count} number of great students"
+def print_footer(students)
+print "Overall, we have #{students.count} number of great students"
 end
 
 print_header
