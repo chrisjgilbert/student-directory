@@ -1,11 +1,12 @@
 def input_students
-  puts "Please enter the names of the students"
-  puts "To print the list, press 'print' instead of a student name"
+  puts "Please enter the names of the students."
+  puts "To print the list, press 'print' instead of a student name."
   students = []
   name = check_for_typo(gets.chomp)
   until name == "print"
-    students << {name: name, cohort: assigned_cohort?(get_cohort)}
+    students << {name: name, cohort: valid_cohort?(get_cohort)}
     puts "Now we have #{students.count} students"
+    puts "Please enter the name of the next student or 'print' to print the list."
     name = check_for_typo(gets.chomp)
   end
   students
@@ -20,18 +21,31 @@ def check_for_typo(input)
     if answer == "y"
       input
     elsif answer == "n"
-      puts "Please re-enter your input..."
+      puts "Please re-enter the name of the student..."
       check_for_typo(gets.chomp)
     end
   end
 end
 
-def assigned_cohort?(cohort)
-  cohort == "" ? "unassigned" : cohort
+def valid_cohort?(cohort_input)
+  valid_cohorts = [
+    "jan", "feb", "mar",
+    "apr", "may", "jun",
+    "jul", "aug", "sept",
+    "oct", "nov", "dec"
+  ]
+
+  if valid_cohorts.include?(cohort_input)
+    cohort_input
+  else
+    puts "Please enter a valid cohort."
+    cohort = valid_cohort?(gets.chomp)
+  end
+
 end
 
 def get_cohort
-  puts "Please enter the name of cohort the student belongs to"
+  puts "Please enter the name of cohort the student belongs to ('jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sept', 'oct', 'nov', 'dec')"
   cohort = gets.chomp
 end
 
@@ -50,7 +64,7 @@ def print_list(students)
 end
 
 def print_footer(students)
-  print center_text("Overall, we have #{students.count} number of great students")
+  print center_text("Overall, we have #{students.count} number of great students.")
 end
 
 def center_text(text)
