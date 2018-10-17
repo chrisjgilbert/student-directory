@@ -1,7 +1,7 @@
 def input_students
+  students = []
   puts "Please enter the names of the students."
   puts "To print the list, press 'print' instead of a student name."
-  students = []
   name = check_for_typo(gets.chomp)
   until name == "print"
     students << {name: name, cohort: valid_cohort?(get_cohort)}
