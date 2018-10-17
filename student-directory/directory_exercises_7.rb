@@ -1,20 +1,33 @@
 def input_students
   puts "Please enter the names of the students"
-  puts "To finish, just hit return twice"
+  puts "To print the list, press 'print' instead of a student name"
   students = []
-  name = gets.chomp
-
-  while !name.empty? do
-    students << {name: name, cohort: check_for_input(get_cohort)}
+  name = check_for_typo(gets.chomp)
+  until name == "print"
+    students << {name: name, cohort: assigned_cohort?(get_cohort)}
     puts "Now we have #{students.count} students"
-    name = gets.chomp
+    name = check_for_typo(gets.chomp)
   end
-
   students
 end
 
-def check_for_input(input)
-  input == "" ? "unassigned" : input
+def check_for_typo(input)
+  if input == "print"
+    input
+  else
+    puts "are you sure you want to add #{input}? y/n?"
+    answer = gets.chomp
+    if answer == "y"
+      input
+    elsif answer == "n"
+      puts "Please re-enter your input..."
+      check_for_typo(gets.chomp)
+    end
+  end
+end
+
+def assigned_cohort?(cohort)
+  cohort == "" ? "unassigned" : cohort
 end
 
 def get_cohort
@@ -34,11 +47,6 @@ def print_list(students)
   students.each.with_index(1) do |student, index|
     puts center_text("#{index}: #{student[:name]} (#{student[:cohort]} cohort).")
   end
-end
-
-def get_first_letter
-  puts "Enter the first letter of the names of students you'd like to view"
-  letter = gets.chomp
 end
 
 def print_footer(students)
