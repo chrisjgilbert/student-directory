@@ -33,6 +33,18 @@ def print_header
   puts "===================="
 end
 
+def print_list(students)
+  accumulator = 0
+  student = 0
+  index = 1
+  while accumulator < students.length
+    puts "#{index}: #{students[student][:name]} (#{students[student][:cohort]} cohort)"
+    accumulator += 1
+    student += 1
+    index += 1
+  end
+end
+
 def get_first_letter
   puts "Enter the first letter of the names of students you'd like to view"
   letter = gets.chomp
@@ -41,7 +53,6 @@ end
 def print_footer(students)
 print "Overall, we have #{students.count} number of great students"
 end
-
 
 def print_list_by_name_length(students)
     students.each.with_index(1) do |student, index|
@@ -53,5 +64,5 @@ end
 
 students = input_students
 print_header
-print_list_by_first_letter(students, get_first_letter)
+print_list(students)
 print_footer(students)
