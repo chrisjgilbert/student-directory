@@ -16,7 +16,7 @@ def check_for_typo(input)
   if input == "print"
     input
   else
-    puts "are you sure you want to add #{input}? y/n?"
+    puts "are you sure you want to add '#{input}'? y/n?"
     answer = gets.chomp
     if answer == "y"
       input
@@ -61,6 +61,20 @@ def print_list(students)
   end
 end
 
+def print_list_by_cohort(students)
+  puts "Enter the name of the cohort you would like to view"
+  cohort = gets.chomp
+  print_header
+  print_line_break
+  students.each.with_index(1) do |student, index|
+    if student[:cohort] == cohort
+      puts center_text("#{index}: #{student[:name]} (#{student[:cohort]} cohort)")
+    end
+  end
+  print_line_break
+  print_footer(students)
+end
+
 def print_footer(students)
   print center_text("Overall, we have #{students.count} number of great students.")
 end
@@ -70,8 +84,4 @@ def center_text(text)
 end
 
 students = input_students
-print_header
-print_line_break
-print_list(students)
-print_line_break
-print_footer(students)
+print_list_by_cohort(students)
