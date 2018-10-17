@@ -5,11 +5,19 @@ def input_students
   name = check_for_typo(gets.chomp)
   until name == "print"
     students << {name: name, cohort: valid_cohort?(get_cohort)}
-    puts "Now we have #{students.count} students"
+    student_count(students)
     puts "Please enter the name of the next student or 'print' to print the list."
     name = check_for_typo(gets.chomp)
   end
   students
+end
+
+def student_count(students)
+  if students.count == 1
+    puts "Now we have just #{students.count} student"
+  else
+    puts "Now we have #{students.count} students"
+  end
 end
 
 def check_for_typo(input)
@@ -49,9 +57,6 @@ end
 
 def print_header
   puts center_text("The Students of Villains Academy")
-end
-
-def print_line_break
   puts center_text("====================")
 end
 
@@ -65,18 +70,20 @@ def print_list_by_cohort(students)
   puts "Enter the name of the cohort you would like to view"
   cohort = gets.chomp
   print_header
-  print_line_break
   students.each.with_index(1) do |student, index|
     if student[:cohort] == cohort
       puts center_text("#{index}: #{student[:name]} (#{student[:cohort]} cohort)")
     end
   end
-  print_line_break
   print_footer(students)
 end
 
 def print_footer(students)
-  print center_text("Overall, we have #{students.count} number of great students.")
+  if students.count == 1
+    print center_text("Overall, we have just #{students.count} great student.")
+  else
+    print center_text("Overall, we have #{students.count} great students.")
+  end
 end
 
 def center_text(text)
