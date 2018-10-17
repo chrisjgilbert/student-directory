@@ -7,7 +7,7 @@ students = [
   {name: "Tyler Durden", cohort: :november},
   {name: "Freddy Kreuger", cohort: :november},
   {name: "The Joker", cohort: :november},
-  {name: "Dr No", cohort: :november}
+  {name: "Dr No", cohort: :november},
 ]
 
 def input_students
