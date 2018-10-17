@@ -1,15 +1,3 @@
-students = [
-  {name: "Dr. Hannibal Lecter", cohort: :november, country: :Austria, hobbies: :food},
-  {name: "Darth Vader", cohort: :november, country: :DarkStar, hobbies: :flying},
-  {name: "Norman Bates", cohort: :november, country: :USA, hobbies: :killing},
-  {name: "Michael Corleone", cohort: :november, country: :USA, hobbies: :wine},
-  {name: "Patrick Bateman", cohort: :november, country: :USA, hobbies: :business},
-  {name: "Tyler Durden", cohort: :november, country: :USA, hobbies: :fighting},
-  {name: "Freddy Kreuger", cohort: :november, country: :USA, hobbies: :halloween},
-  {name: "The Joker", cohort: :november, country: :USA, hobbies: :joking},
-  {name: "Dr No", cohort: :november, country: :USA, hobbies: :swimming}
-]
-
 def input_students
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
