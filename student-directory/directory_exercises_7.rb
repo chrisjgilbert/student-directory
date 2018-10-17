@@ -17,12 +17,16 @@ def input_students
   name = gets.chomp
 
   while !name.empty? do
-    students << {name: name, cohort: get_cohort}
+    students << {name: name, cohort: check_for_input(get_cohort)}
     puts "Now we have #{students.count} students"
     name = gets.chomp
   end
 
   students
+end
+
+def check_for_input(input)
+  input == "" ? "unassigned" : input
 end
 
 def get_cohort
