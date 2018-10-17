@@ -34,14 +34,12 @@ def valid_cohort?(cohort_input)
     "jul", "aug", "sept",
     "oct", "nov", "dec"
   ]
-
   if valid_cohorts.include?(cohort_input)
     cohort_input
   else
     puts "Please enter a valid cohort."
     cohort = valid_cohort?(gets.chomp)
   end
-
 end
 
 def get_cohort
