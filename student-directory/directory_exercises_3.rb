@@ -42,7 +42,6 @@ def print_footer(students)
 print "Overall, we have #{students.count} number of great students"
 end
 
-
 def print_list_by_name_length(students)
     students.each.with_index(1) do |student, index|
     if student[:name].length < 12
