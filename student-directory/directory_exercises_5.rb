@@ -29,19 +29,17 @@ def input_students
 end
 
 def print_header
-  puts "The Students of Villains Academy"
-  puts "===================="
+  puts center_text("The Students of Villains Academy")
 end
 
+def print_line_break
+  puts center_text("====================")
+end
+
+
 def print_list(students)
-  accumulator = 0
-  student = 0
-  index = 1
-  while accumulator < students.length
-    puts "#{index}: #{students[student][:name]} (#{students[student][:cohort]} cohort). Country: #{students[student][:country]}. Hobbies: #{students[student][:hobbies]}."
-    accumulator += 1
-    student += 1
-    index += 1
+  students.each.with_index(1) do |student, index|
+    puts center_text("#{index}: #{student[:name]} (#{student[:cohort]} cohort). Country: #{student[:country]}, Hobbies: #{student[:hobbies]}")
   end
 end
 
@@ -51,18 +49,16 @@ def get_first_letter
 end
 
 def print_footer(students)
-print "Overall, we have #{students.count} number of great students"
+  print center_text("Overall, we have #{students.count} number of great students")
 end
 
-def print_list_by_name_length(students)
-    students.each.with_index(1) do |student, index|
-    if student[:name].length < 12
-      puts "#{index}: #{student[:name]} (#{student[:cohort]} cohort)"
-    end
-  end
+def center_text(text)
+  text.center(120)
 end
 
 # students = input_students
 print_header
+print_line_break
 print_list(students)
+print_line_break
 print_footer(students)
