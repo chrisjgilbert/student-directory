@@ -15,7 +15,7 @@ end
 
 def show_students
   print_header
-  print_list
+  print_student_list
   print_footer
 end
 
@@ -48,7 +48,7 @@ def print_header
   puts "-------------"
 end
 
-def print_list
+def print_student_list
   @students.each.with_index(1) do |student, index|
     puts "#{index}: #{student[:name]} (#{student[:cohort]} cohort)"
   end
