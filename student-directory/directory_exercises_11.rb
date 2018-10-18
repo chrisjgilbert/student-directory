@@ -99,4 +99,5 @@ def center_text(text)
   text.center(170)
 end
 
+
 input_students
