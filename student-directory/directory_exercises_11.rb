@@ -1,17 +1,17 @@
 def input_students
-  students = []
+  student_pool = []
   num_of_students = 0
   puts "Please enter the names of the students."
   puts "To print the list, press 'print' instead of a student name. There much be at least one student in order to print"
   name = check_for_typo(gets_and_chomp)
   until name == "print"
-    students << {name: name, cohort: valid_cohort?(get_cohort)}
+    student_pool << {name: name, cohort: valid_cohort?(get_cohort)}
     num_of_students += 1
     show_student_count(num_of_students)
     puts "Please enter the name of the next student or 'print' to print the list."
     name = check_for_typo(gets_and_chomp)
   end
-  students
+  print_list_by_cohort(student_pool)
 end
 
 def gets_and_chomp
@@ -66,22 +66,25 @@ def print_header
   puts center_text("====================")
 end
 
-def print_list(students)
-  students.each.with_index(1) do |student, index|
-    puts center_text("#{index}: #{student[:name]} (#{student[:cohort]} cohort).")
-  end
+def print_valid?(students)
+  students.size > 0 ? true : false
 end
 
 def print_list_by_cohort(students)
-  puts "Enter the name of the cohort you would like to view"
-  cohort = valid_cohort?(gets_and_chomp)
-  print_header
-  students.each.with_index(1) do |student, index|
-    if student[:cohort] == cohort
-      puts center_text("#{index}: #{student[:name]} (#{student[:cohort]} cohort)")
+  if print_valid?(students) == true
+    puts "Enter the name of the cohort you would like to view"
+    cohort = valid_cohort?(gets_and_chomp)
+    print_header
+    students.each do |student|
+      if student[:cohort] == cohort
+        puts center_text("#{student[:name].capitalize} (Cohort: #{student[:cohort].capitalize})")
+      end
     end
+    print_footer(students)
+  else
+    puts "You need to have added at least one student before you can print!"
+    input_students
   end
-  students
 end
 
 def print_footer(students)
@@ -96,6 +99,4 @@ def center_text(text)
   text.center(170)
 end
 
-students = input_students
-print_list_by_cohort(students)
-print_footer(students)
+input_students
