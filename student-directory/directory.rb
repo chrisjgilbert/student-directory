@@ -21,9 +21,13 @@ def add_student_to_list(name, cohort=:november)
   @students << {name: name, cohort: cohort}
 end
 
-def input_students
+def input_menu
   puts "Please enter the names of the students"
   puts "To finish, just hit return twice"
+end
+
+def input_students
+  input_menu
   name = STDIN.gets.chomp
   while !name.empty? do
     add_student_to_list(name)
