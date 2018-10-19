@@ -39,9 +39,11 @@ def print_list(students)
   end
 end
 
+
 def print_list_by_first_letter(students, first_letter)
+    puts students.inspect
     students.each.with_index(1) do |student, index|
-    if student[:name].start_with?(first_letter)
+    if student[:name].upcase.start_with?(first_letter)
       puts "#{index}: #{student[:name]} (#{student[:cohort]} cohort)"
     end
   end
@@ -49,7 +51,7 @@ end
 
 def get_first_letter
   puts "Enter the first letter of the names of students you'd like to view"
-  letter = gets.chomp
+  letter = gets.chomp.upcase
 end
 
 def print_footer(students)

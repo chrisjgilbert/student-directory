@@ -74,18 +74,27 @@ end
 def process(selection)
   case selection
     when "1"
+      puts user_menu_feedback(selection)
       input_students
     when "2"
+      puts user_menu_feedback(selection)
       show_students
     when "3"
+      puts user_menu_feedback(selection)
       save_students
     when "4"
+      puts user_menu_feedback(selection)
       load_students
     when "9"
+      puts "Goodbye!"
       exit
     else
       puts "I don't know what you mean. Please try again."
   end
+end
+
+def user_menu_feedback(selection)
+  puts "You chose #{selection}"
 end
 
 def print_header
