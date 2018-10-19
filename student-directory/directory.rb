@@ -7,8 +7,13 @@ def interactive_menu
   end
 end
 
+def get_filename
+  puts "Please enter a filename"
+  filename = gets.chomp
+end
+
 def save_students
-  file = File.open("students.csv", "w")
+  file = File.open(get_filename, "w")
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
@@ -36,8 +41,8 @@ def input_students
   end
 end
 
-def load_students(filename= "students.csv")
-  file = File.open("students.csv", "r")
+def load_students
+  file = File.open(get_filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
     add_student_to_list(name, cohort.to_sym)
@@ -60,8 +65,8 @@ end
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
-  puts "3. Save student list to students.csv"
-  puts "4. Load the student list from students.csv"
+  puts "3. Save student list to file"
+  puts "4. Load the student list from file"
   puts "9. Exit"
 end
 
@@ -94,7 +99,7 @@ def process(selection)
 end
 
 def user_menu_feedback(selection)
-  puts "You chose #{selection}"
+  puts "You chose option #{selection}"
 end
 
 def print_header
@@ -112,5 +117,4 @@ def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
-try_load_students
 interactive_menu
