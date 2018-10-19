@@ -42,23 +42,17 @@ def input_students
 end
 
 def load_students
-  file = File.open(get_filename, "r")
-  file.readlines.each do |line|
-    name, cohort = line.chomp.split(',')
-    add_student_to_list(name, cohort.to_sym)
-  end
-  file.close
-end
-
-def try_load_students
-  filename = ARGV.first # first argument given from command line
-  return load_students if filename.nil? # get out of method if no argument given
+  filename = get_filename
   if File.exists?(filename)
-    load_students(filename)
-    puts "Loaded #{@students.count} from #{filename}"
-  else # if it doesn't exist
-    puts "Sorry #{filename} doesn't exist!"
-    exit
+    file = File.open(filename, "r")
+    file.readlines.each do |line|
+      name, cohort = line.chomp.split(',')
+      add_student_to_list(name, cohort.to_sym)
+    end
+    puts "Loaded #{@students.count} students from #{filename}"
+    file.close
+  else
+    puts "Sorry, #{filename} doesn't exist!"
   end
 end
 
