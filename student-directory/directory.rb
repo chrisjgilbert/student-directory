@@ -52,7 +52,7 @@ def load_students
     puts "Loaded #{@students.count} students from #{filename}"
     file.close
   else
-    puts "Sorry, #{filename} doesn't exist!"
+    puts "Sorry, '#{filename}' doesn't exist!"
   end
 end
 
