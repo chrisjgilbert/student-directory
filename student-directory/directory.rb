@@ -13,13 +13,13 @@ def get_filename
 end
 
 def save_students
-  file = File.open(get_filename, "w")
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts(csv_line)
+  File.open(get_filename, "w") do |f|
+    @students.each do |student|
+      student_data = [student[:name], student[:cohort]]
+      csv_line = student_data.join(",")
+      f.puts(csv_line)
+    end
   end
-  file.close
 end
 
 def add_student_to_list(name, cohort=:november)
@@ -44,7 +44,7 @@ end
 def load_students
   filename = get_filename
   if File.exists?(filename)
-    file = File.open(filename, "r").each do |line|
+    File.open(filename, "r").each do |line|
       name, cohort = line.chomp.split(',')
       add_student_to_list(name, cohort.to_sym)
     end
