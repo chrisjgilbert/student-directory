@@ -47,8 +47,8 @@ end
 def load_students
   filename = get_filename
   if File.exists?(filename)
-    File.open(filename, "r").each do |line|
-      name, cohort = line.chomp.split(',')
+    CSV.foreach(filename) do |student|
+      name, cohort = student[0], student[1]
       add_student_to_list(name, cohort.to_sym)
     end
     puts "Loaded #{@students.count} students from #{filename}"
