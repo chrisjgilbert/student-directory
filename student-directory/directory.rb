@@ -1,3 +1,6 @@
+# require CSV library
+require 'csv'
+
 @students = [] # an empty array accessible to all methods
 
 def interactive_menu
