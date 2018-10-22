@@ -44,13 +44,11 @@ end
 def load_students
   filename = get_filename
   if File.exists?(filename)
-    file = File.open(filename, "r")
-    file.readlines.each do |line|
+    file = File.open(filename, "r").each do |line|
       name, cohort = line.chomp.split(',')
       add_student_to_list(name, cohort.to_sym)
     end
     puts "Loaded #{@students.count} students from #{filename}"
-    file.close
   else
     puts "Sorry, '#{filename}' doesn't exist!"
   end
