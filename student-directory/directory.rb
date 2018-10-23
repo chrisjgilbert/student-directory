@@ -110,4 +110,10 @@ def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
-interactive_menu
+def readfile
+  File.open($0, "r").each do |line|
+    puts line
+  end
+end
+
+readfile
