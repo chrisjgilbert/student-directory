@@ -1,3 +1,6 @@
+# require CSV library
+require 'csv'
+
 @students = [] # an empty array accessible to all methods
 
 def interactive_menu
@@ -13,13 +16,11 @@ def get_filename
 end
 
 def save_students
-  file = File.open(get_filename, "w")
-  @students.each do |student|
-    student_data = [student[:name], student[:cohort]]
-    csv_line = student_data.join(",")
-    file.puts(csv_line)
+  CSV.open(get_filename, "w") do |csv_row|
+    @students.each do |student|
+      csv_row << [student[:name], student[:cohort]]
+    end
   end
-  file.close
 end
 
 def add_student_to_list(name, cohort=:november)
@@ -44,15 +45,13 @@ end
 def load_students
   filename = get_filename
   if File.exists?(filename)
-    file = File.open(filename, "r")
-    file.readlines.each do |line|
-      name, cohort = line.chomp.split(',')
+    CSV.foreach(filename) do |student|
+      name, cohort = student[0], student[1]
       add_student_to_list(name, cohort.to_sym)
     end
     puts "Loaded #{@students.count} students from #{filename}"
-    file.close
   else
-    puts "Sorry, #{filename} doesn't exist!"
+    puts "Sorry, '#{filename}' doesn't exist!"
   end
 end
 
@@ -111,4 +110,10 @@ def print_footer
   puts "Overall, we have #{@students.count} great students"
 end
 
-interactive_menu
+def readfile
+  File.open($0, "r").each do |line|
+    puts line
+  end
+end
+
+readfile
